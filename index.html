@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>SI-649 Individual Asgt v2, W18 | Navdeep Bagga</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+	<h1 class="title">Effectiveness comparison of Penicilin, Streptomycin &amp; Neomycin antibiotics on various bacteria</h1>
+	<p class="subtitle">(The lower the MIC value, the effective the antibiotic)</p>
+
+	<div id="chart" class="chart">
+		<div class="chart__axis-desc chart__axis-descX">Bacteria</div>
+		<div class="chart__axis-desc chart__axis-descY">log( MIC ) * 100</div>
+
+		<div class="chart__legend chart__legend1">
+			<p>Gram staining</p>
+			<ul>
+				<li>Positive</li>
+				<li>Negative</li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.slim.min.js"></script>
+	<script src="main.js"></script>
+	<script>
+		// @src
+		// https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
+		let loadJSON = ( pathToJSON, callback ) => {
+			var xobj = new XMLHttpRequest();
+			xobj.overrideMimeType( "application/json" );
+			xobj.open( "GET", pathToJSON, true );
+			xobj.onreadystatechange = () => {
+				if( xobj.readyState == 4 && xobj.status == "200" ) {
+					callback( JSON.parse( xobj.responseText ) );
+				}
+			};
+			xobj.send( null );
+		};
+
+		loadJSON( "data/a1-burtin-modified.json", App.init );
+	</script>
+</body>
+</html>
